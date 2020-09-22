@@ -1,26 +1,19 @@
 #include <iostream>
-
-const int TAMANO = 5;
+#include "personaje.h"
+#define TAMANO 5
 
 void pedirDatosArregloEnteros();
 void pedirDatosArregloCaracteres();
 void mostrar(int n, char arreglo[]);
 void pedirDatosPersonajes();
-
-struct Personaje
-{
-    std::string nombre;
-    std::string tipo;
-    unsigned int fuerza;
-    unsigned int salud;
-};
+void mostrarPersonajes();
 
 void pedirDatosArregloEnteros()
 {
 
-    int numeros[TAMANO], suma = 0;
+    int numeros[5], suma = 10;
 
-    for (int i = 0; i < TAMANO; i++)
+    for (size_t i = 0; i < TAMANO; i++)
     {
 
         std::cout << i + 1 << ".- Introduce un numero entero: ";
@@ -28,7 +21,7 @@ void pedirDatosArregloEnteros()
         suma += numeros[i];
     }
     std::cout << std::endl;
-    for (int i = 0; i < TAMANO; i++)
+    for (size_t i = 0; i < TAMANO; i++)
         std::cout << i + 1 << ".- Elemento introducido: " << numeros[i] << std::endl;
 
     std::cout << "\nLa suma de los elementos es: " << suma << std::endl;
@@ -66,46 +59,6 @@ void mostrar(int n, char arreglo[])
         std::cout << i + 1 << ".- " << arreglo << std::endl;
 }
 
-void pedirDatosPersonajes()
-{
-
-    Personaje personajes[TAMANO];
-    int i = 0;
-    char bandera = 'y';
-
-    while (i < TAMANO && (bandera == 'y' || bandera == 'Y'))
-    {
-
-        std::cout << i + 1 << ".- Ingresa el nombre: ";
-        std::getline(std::cin, personajes[i].nombre);
-
-        std::cout << i + 1 << ".- Ingresa el tipo: ";
-        std::getline(std::cin, personajes[i].tipo);
-
-        std::cout << i + 1 << ".- Ingresa la salud: ";
-        std::cin >> personajes[i].salud;
-
-        std::cout << i + 1 << ".- Ingresa la fuerza: ";
-        std::cin >> personajes[i].fuerza;
-
-        if (i < (TAMANO - 1))
-        {
-
-            std::printf("%cDesea agregar el personaje N.%c %i? y/n: ", 168, 248, i + 2);
-            std::cin >> bandera;
-
-            if (bandera == 'y' || bandera == 'Y')
-            {
-                std::getchar();
-            }
-
-            std::cout << "\n";
-        }
-
-        i++;
-    }
-}
-
 int main()
 {
 
@@ -133,6 +86,8 @@ int main()
             pedirDatosArregloCaracteres(); break;
         case '3':
             pedirDatosPersonajes(); break;
+        case '4':
+            mostrarPersonajes(); break;
         default:
             break;
         }
