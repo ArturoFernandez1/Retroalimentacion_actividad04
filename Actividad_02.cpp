@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 
 const int TAMANO = 5;
 
@@ -7,36 +7,38 @@ void pedirDatosArregloCaracteres();
 void mostrar(int n, char arreglo[]);
 void pedirDatosPersonajes();
 
-struct Personaje{
+struct Personaje
+{
     std::string nombre;
     std::string tipo;
     unsigned int fuerza;
     unsigned int salud;
 };
 
-void pedirDatosArregloEnteros(){
+void pedirDatosArregloEnteros()
+{
 
-    int numeros[TAMANO], suma=0;
+    int numeros[TAMANO], suma = 0;
 
-    for(int i=0;i<TAMANO;i++){
+    for (int i = 0; i < TAMANO; i++)
+    {
 
-        std::cout << i+1 << ".- Introduce un numero entero: ";
+        std::cout << i + 1 << ".- Introduce un numero entero: ";
         std::cin >> numeros[i];
-        suma+=numeros[i];
-
+        suma += numeros[i];
     }
     std::cout << std::endl;
-    for(int i=0;i<TAMANO;i++)
-        std::cout << i+1 << ".- Elemento introducido: " << numeros[i] << std::endl;
+    for (int i = 0; i < TAMANO; i++)
+        std::cout << i + 1 << ".- Elemento introducido: " << numeros[i] << std::endl;
 
     std::cout << "\nLa suma de los elementos es: " << suma << std::endl;
-    std::cout << "El promedio de los elementos es: " << float (suma) / float (TAMANO) << std::endl;
-
+    std::cout << "El promedio de los elementos es: " << float(suma) / float(TAMANO) << std::endl;
 }
 
-void pedirDatosArregloCaracteres(){
+void pedirDatosArregloCaracteres()
+{
 
-    int nCaracteres,nIteraciones;
+    int nCaracteres, nIteraciones;
 
     std::cout << "Ingrese el numero de iteraciones: ";
     std::cin >> nIteraciones;
@@ -49,72 +51,93 @@ void pedirDatosArregloCaracteres(){
     std::getchar();
 
     std::cout << "Ingrese la cadena: ";
-    std::cin.getline(arreglo,nCaracteres+1,'\n');
+    std::cin.getline(arreglo, nCaracteres + 1, '\n');
 
     std::cin.clear();
     std::fflush(stdin);
 
-    mostrar(nIteraciones,arreglo);
-
+    mostrar(nIteraciones, arreglo);
 }
 
-void mostrar(int n, char arreglo[]){
-	
-    for(int i = 0;i < n; i++)
-        std::cout << i+1 << ".- " << arreglo << std::endl;
+void mostrar(int n, char arreglo[])
+{
 
+    for (int i = 0; i < n; i++)
+        std::cout << i + 1 << ".- " << arreglo << std::endl;
 }
 
-void pedirDatosPersonajes(){
+void pedirDatosPersonajes()
+{
 
     Personaje personajes[TAMANO];
     int i = 0;
     char bandera = 'y';
 
-    while(i < TAMANO && (bandera == 'y' || bandera == 'Y')){
+    while (i < TAMANO && (bandera == 'y' || bandera == 'Y'))
+    {
 
-        std::cout << i + 1<<".- Ingresa el nombre: ";
-        std::getline(std::cin,personajes[i].nombre);
+        std::cout << i + 1 << ".- Ingresa el nombre: ";
+        std::getline(std::cin, personajes[i].nombre);
 
-        std::cout << i + 1<< ".- Ingresa el tipo: ";
-        std::getline(std::cin,personajes[i].tipo);
+        std::cout << i + 1 << ".- Ingresa el tipo: ";
+        std::getline(std::cin, personajes[i].tipo);
 
-        std::cout << i + 1<< ".- Ingresa la salud: ";
+        std::cout << i + 1 << ".- Ingresa la salud: ";
         std::cin >> personajes[i].salud;
 
         std::cout << i + 1 << ".- Ingresa la fuerza: ";
         std::cin >> personajes[i].fuerza;
 
-        if (i < (TAMANO - 1) ){
+        if (i < (TAMANO - 1))
+        {
 
-            std::printf("%cDesea agregar el personaje N.%c %i? y/n: ",168,248,i+2);
+            std::printf("%cDesea agregar el personaje N.%c %i? y/n: ", 168, 248, i + 2);
             std::cin >> bandera;
 
-            if (bandera == 'y' || bandera == 'Y') { std::getchar(); }
-
-            std::cout << "\n"; 
+            if (bandera == 'y' || bandera == 'Y')
+            {
+                std::getchar();
             }
 
+            std::cout << "\n";
+        }
+
         i++;
-
     }
-
 }
 
-int main(){
+int main()
+{
 
-    std::cout << "\nOpcion 1.) -------------------------------------" << std::endl;
-    pedirDatosArregloEnteros();
+    char opcion;
 
-    std::cout << "\nOpcion 2.) -------------------------------------" << std::endl;
-    pedirDatosArregloCaracteres();
+    do
+    {
 
-    std::cout << "\nOpcion 3.) --------------------------------------" << std::endl;
-    pedirDatosPersonajes();
+        std::cout << "\nOpcion 1.) Capturar arreglo de enteros";
+        std::cout << "\nOpcion 2.) Imprimir n veces una cadena";
+        std::cout << "\nOpcion 3.) Capturar personajes";
+        std::cout << "\nOpcion 4.) Mostrar personajes";
+        std::cout << "\nOpcion 0.) Salir";
+        std::cout << "\nElige una opcion: ";
 
-    std::getchar();
+        std::cin >> opcion;
+
+        std::fflush(stdin);
+
+        switch (opcion)
+        {
+        case '1':
+            pedirDatosArregloEnteros(); break;
+        case '2':
+            pedirDatosArregloCaracteres(); break;
+        case '3':
+            pedirDatosPersonajes(); break;
+        default:
+            break;
+        }
+
+    } while (opcion != '0');
 
     return 0;
-
 }
-
